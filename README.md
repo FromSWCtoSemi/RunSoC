@@ -31,131 +31,131 @@ Once the peer review is complete, the repository will be updated with researcher
 
 1. **Directed Acyclic Graph (DAG) Construction**
 
-&nbsp;	* Enables users to define custom tasks and their dependencies.
-
-&nbsp;	* Automatically builds a DAG to represent the workload.
-
-&nbsp;	* Supports both periodic and event-driven task types.
-
-&nbsp;	* Provides visualization of task dependencies for validation and analysis.
+    * Enables users to define custom tasks and their dependencies.
+    
+    * Automatically builds a DAG to represent the workload.
+    
+    * Supports both periodic and event-driven task types.
+    
+    * Provides visualization of task dependencies for validation and analysis.
 
 
 
 2. **Task Scheduling**
 
-&nbsp;	* Implements two scheduling policies:**
-
-&nbsp;		> FCFS (First-Come-First-Served) – optimized for simplicity and low overhead.
-
-&nbsp;		> PAS (Priority-Aware Scheduling) – respects task priority levels, suited for safety-critical workloads.
-
-&nbsp;	* Integrates both periodic and event-driven semantics in one cohesive scheduling framework.
-
-&nbsp;	* Operates with a global event loop that advances system time and evaluates decisions at discrete “decision points.”
-
-&nbsp;	* Enforces strict periodicity guard logic to ensure timing integrity of periodic tasks.
+    * Implements two scheduling policies:
+    
+      * FCFS (First-Come-First-Served) – optimized for simplicity and low overhead.
+    
+      * PAS (Priority-Aware Scheduling) – respects task priority levels, suited for safety-critical workloads.
+    
+    * Integrates both periodic and event-driven semantics in one cohesive scheduling framework.
+    
+    * Operates with a global event loop that advances system time and evaluates decisions at discrete “decision points.”
+    
+    * Enforces strict periodicity guard logic to ensure timing integrity of periodic tasks.
 
 
 
 3. **Core Allocation and Parallelization**
 
-&nbsp;	* Provides two complementary allocation strategies:
-
-&nbsp;		> Static Core Allocation: fixed number of cores assigned at simulation start; deterministic and low overhead.
-
-&nbsp;		> Dynamic Core Allocation: adjusts the number of active cores in real time depending on task eligibility; supports adaptability.
-
-&nbsp;	* Calculates optimal allocation using metrics like maximum parallelism (Pmax) and minimum required core count (Nmin).
-
-&nbsp;	* Ensures efficient resource utilization and analysis of makespan (total completion time).
+    * Provides two complementary allocation strategies:
+    
+      * Static Core Allocation: fixed number of cores assigned at simulation start; deterministic and low overhead.
+    
+      * Dynamic Core Allocation: adjusts the number of active cores in real time depending on task eligibility; supports adaptability.
+    
+    * Calculates optimal allocation using metrics like maximum parallelism (Pmax) and minimum required core count (Nmin).
+    
+    * Ensures efficient resource utilization and analysis of makespan (total completion time).
 
 
 
 4. **Simulation and Evaluation Environment**
 
-&nbsp;	* Built as a modular web-based simulation system with:
-
-&nbsp;		> Frontend (Next.js/React): interactive interface for input, configuration, and DAG visualization.
-
-&nbsp;		> Backend (Python): executes all scheduling, allocation, and simulation logic.
-
-&nbsp;	* Nginx deployment enables seamless communication and integrated execution between frontend and backend.
+    * Built as a modular web-based simulation system with:
+    
+      * Frontend (Next.js/React): interactive interface for input, configuration, and DAG visualization.
+    
+      * Backend (Python): executes all scheduling, allocation, and simulation logic.
+    
+    * Nginx deployment enables seamless communication and integrated execution between frontend and backend.
 
 
 
 5. **Input/Output and Visualization**
 
-&nbsp;	* User inputs include:
-
-&nbsp;		> Number of cores (C)
-
-&nbsp;		> Scheduling policy (FCFS or PAS)
-
-&nbsp;		> Allocation mode (static or dynamic)
-
-&nbsp;		> Task definitions (execution time, priority, dependencies)
-
-&nbsp;		> Simulation iterations
-
-&nbsp;	* Outputs include:
-
-&nbsp;		> Schedule trace (task, start time, finish time, core)
-
-&nbsp;		> Gantt chart visualization
-
-&nbsp;	* Performance metrics:
-
-&nbsp;		> Makespan
-
-&nbsp;		> Critical path length (TCP)
-
-&nbsp;		> Total work (W)
-
-&nbsp;		> Maximum parallelism (Pmax)
-
-&nbsp;		> Average core utilization (Cavg)
+    * User inputs include:
+    
+      * Number of cores (C)
+    
+      * Scheduling policy (FCFS or PAS)
+    
+      * Allocation mode (static or dynamic)
+    
+      * Task definitions (execution time, priority, dependencies)
+    
+      * Simulation iterations
+    
+    * Outputs include:
+    
+      * Schedule trace (task, start time, finish time, core)
+    
+      * Gantt chart visualization
+    
+    * Performance metrics:
+    
+      * Makespan
+    
+      * Critical path length (TCP)
+    
+      * Total work (W)
+    
+      * Maximum parallelism (Pmax)
+    
+      * Average core utilization (Cavg)
 
 
 
 6. **Data Structures and Simulation Logic**
 
-&nbsp;	* Employs efficient internal representations:
-
-&nbsp;		> Task objects (with properties such as ID, execution time, priority, dependencies).
-
-&nbsp;		> Ready queue using a custom comparator (based on time or priority).
-
-&nbsp;		> Execution log and core pool to track allocation states.
-
-&nbsp;	* Event-driven main loop ensures deterministic progression and reproducible simulation.
+    * Employs efficient internal representations:
+    
+      * Task objects (with properties such as ID, execution time, priority, dependencies).
+    
+      * Ready queue using a custom comparator (based on time or priority).
+    
+      * Execution log and core pool to track allocation states.
+    
+    * Event-driven main loop ensures deterministic progression and reproducible simulation.
 
 
 
 7. **Analytical and Evaluation Capabilities**
 
-&nbsp;	* Supports comparative studies (e.g., static vs. dynamic allocation, FCFS vs. PAS).
-
-&nbsp;	* Provides derived analytical metrics like throughput, latency, and core utilization.
-
-&nbsp;	* Enables performance benchmarking with different task structures (long critical path vs. balanced DAG).
+    * Supports comparative studies (e.g., static vs. dynamic allocation, FCFS vs. PAS).
+    
+    * Provides derived analytical metrics like throughput, latency, and core utilization.
+    
+    * Enables performance benchmarking with different task structures (long critical path vs. balanced DAG).
 
 
 
 8. **Design Principles and Extendability**
 
-&nbsp;	* Integrates dependency- and criticality-awareness in scheduling and allocation.
-
-&nbsp;	* Offers practical guidelines for selecting allocation/scheduling methods based on measurable metrics.
-
-&nbsp;	* Designed for reproducibility, determinism, and scalability in research and real-world SoC evaluations.
-
-&nbsp;	* Future-ready for extensions such as:
-
-&nbsp;		> Heterogeneous SoC support (different core types)
-
-&nbsp;		> Adaptive load balancing
-
-&nbsp;		> Enhanced periodicity guards
-
-&nbsp;		> Redundancy and fault-tolerance mechanisms
+    * Integrates dependency- and criticality-awareness in scheduling and allocation.
+    
+    * Offers practical guidelines for selecting allocation/scheduling methods based on measurable metrics.
+    
+    * Designed for reproducibility, determinism, and scalability in research and real-world SoC evaluations.
+    
+    * Future-ready for extensions such as:
+    
+      * Heterogeneous SoC support (different core types)
+    
+      * Adaptive load balancing
+    
+      * Enhanced periodicity guards
+    
+      * Redundancy and fault-tolerance mechanisms
 
