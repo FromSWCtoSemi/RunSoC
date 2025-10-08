@@ -1,12 +1,12 @@
-\# RunSoC: An Allocation Framework for Automotive Software Components to Semiconductor Design Partitions in System-on-Chips
+# RunSoC: An Allocation Framework for Automotive Software Components to Semiconductor Design Partitions in System-on-Chips
 
 
 
-\## Overview
+## Overview
 
 
 
-\*\*RunSoC\*\* is a specialized engineering framework designed for scheduling and allocation of automotive software components on multi-core SoCs. RunSoC integrates static and dynamic strategies to improve core utilization and task latency.
+**RunSoC** is a specialized engineering framework designed for scheduling and allocation of automotive software components on multi-core SoCs. RunSoC integrates static and dynamic strategies to improve core utilization and task latency.
 
 
 
@@ -25,67 +25,67 @@ Once the peer review is complete, the repository will be updated with researcher
 
 
 
-\## Core Capabilities
+## Core Capabilities
 
 
 
-1. \*\*Directed Acyclic Graph (DAG) Construction\*\*
+1. **Directed Acyclic Graph (DAG) Construction**
 
-&nbsp;	\* Enables users to define custom tasks and their dependencies.
+&nbsp;	* Enables users to define custom tasks and their dependencies.
 
-&nbsp;	\* Automatically builds a DAG to represent the workload.
+&nbsp;	* Automatically builds a DAG to represent the workload.
 
-&nbsp;	\* Supports both periodic and event-driven task types.
+&nbsp;	* Supports both periodic and event-driven task types.
 
-&nbsp;	\* Provides visualization of task dependencies for validation and analysis.
+&nbsp;	* Provides visualization of task dependencies for validation and analysis.
 
 
 
-2\. \*\*Task Scheduling\*\*
+2. **Task Scheduling**
 
-&nbsp;	\* Implements two scheduling policies:\*\*
+&nbsp;	* Implements two scheduling policies:**
 
 &nbsp;		> FCFS (First-Come-First-Served) – optimized for simplicity and low overhead.
 
 &nbsp;		> PAS (Priority-Aware Scheduling) – respects task priority levels, suited for safety-critical workloads.
 
-&nbsp;	\* Integrates both periodic and event-driven semantics in one cohesive scheduling framework.
+&nbsp;	* Integrates both periodic and event-driven semantics in one cohesive scheduling framework.
 
-&nbsp;	\* Operates with a global event loop that advances system time and evaluates decisions at discrete “decision points.”
+&nbsp;	* Operates with a global event loop that advances system time and evaluates decisions at discrete “decision points.”
 
-&nbsp;	\* Enforces strict periodicity guard logic to ensure timing integrity of periodic tasks.
+&nbsp;	* Enforces strict periodicity guard logic to ensure timing integrity of periodic tasks.
 
 
 
-3\. \*\*Core Allocation and Parallelization\*\*
+3. **Core Allocation and Parallelization**
 
-&nbsp;	\* Provides two complementary allocation strategies:
+&nbsp;	* Provides two complementary allocation strategies:
 
 &nbsp;		> Static Core Allocation: fixed number of cores assigned at simulation start; deterministic and low overhead.
 
 &nbsp;		> Dynamic Core Allocation: adjusts the number of active cores in real time depending on task eligibility; supports adaptability.
 
-&nbsp;	\* Calculates optimal allocation using metrics like maximum parallelism (Pmax) and minimum required core count (Nmin).
+&nbsp;	* Calculates optimal allocation using metrics like maximum parallelism (Pmax) and minimum required core count (Nmin).
 
-&nbsp;	\* Ensures efficient resource utilization and analysis of makespan (total completion time).
+&nbsp;	* Ensures efficient resource utilization and analysis of makespan (total completion time).
 
 
 
-4\. \*\*Simulation and Evaluation Environment\*\*
+4. **Simulation and Evaluation Environment**
 
-&nbsp;	\* Built as a modular web-based simulation system with:
+&nbsp;	* Built as a modular web-based simulation system with:
 
 &nbsp;		> Frontend (Next.js/React): interactive interface for input, configuration, and DAG visualization.
 
 &nbsp;		> Backend (Python): executes all scheduling, allocation, and simulation logic.
 
-&nbsp;	\* Nginx deployment enables seamless communication and integrated execution between frontend and backend.
+&nbsp;	* Nginx deployment enables seamless communication and integrated execution between frontend and backend.
 
 
 
-5\. \*\*Input/Output and Visualization\*\*
+5. **Input/Output and Visualization**
 
-&nbsp;	\* User inputs include:
+&nbsp;	* User inputs include:
 
 &nbsp;		> Number of cores (C)
 
@@ -97,13 +97,13 @@ Once the peer review is complete, the repository will be updated with researcher
 
 &nbsp;		> Simulation iterations
 
-&nbsp;	\* Outputs include:
+&nbsp;	* Outputs include:
 
 &nbsp;		> Schedule trace (task, start time, finish time, core)
 
 &nbsp;		> Gantt chart visualization
 
-&nbsp;	\* Performance metrics:
+&nbsp;	* Performance metrics:
 
 &nbsp;		> Makespan
 
@@ -117,9 +117,9 @@ Once the peer review is complete, the repository will be updated with researcher
 
 
 
-6\. \*\*Data Structures and Simulation Logic\*\*
+6. **Data Structures and Simulation Logic**
 
-&nbsp;	\* Employs efficient internal representations:
+&nbsp;	* Employs efficient internal representations:
 
 &nbsp;		> Task objects (with properties such as ID, execution time, priority, dependencies).
 
@@ -127,29 +127,29 @@ Once the peer review is complete, the repository will be updated with researcher
 
 &nbsp;		> Execution log and core pool to track allocation states.
 
-&nbsp;	\* Event-driven main loop ensures deterministic progression and reproducible simulation.
+&nbsp;	* Event-driven main loop ensures deterministic progression and reproducible simulation.
 
 
 
-7\. \*\*Analytical and Evaluation Capabilities\*\*
+7. **Analytical and Evaluation Capabilities**
 
-&nbsp;	\* Supports comparative studies (e.g., static vs. dynamic allocation, FCFS vs. PAS).
+&nbsp;	* Supports comparative studies (e.g., static vs. dynamic allocation, FCFS vs. PAS).
 
-&nbsp;	\* Provides derived analytical metrics like throughput, latency, and core utilization.
+&nbsp;	* Provides derived analytical metrics like throughput, latency, and core utilization.
 
-&nbsp;	\* Enables performance benchmarking with different task structures (long critical path vs. balanced DAG).
+&nbsp;	* Enables performance benchmarking with different task structures (long critical path vs. balanced DAG).
 
 
 
-8\. \*\*Design Principles and Extendability\*\*
+8. **Design Principles and Extendability**
 
-&nbsp;	\* Integrates dependency- and criticality-awareness in scheduling and allocation.
+&nbsp;	* Integrates dependency- and criticality-awareness in scheduling and allocation.
 
-&nbsp;	\* Offers practical guidelines for selecting allocation/scheduling methods based on measurable metrics.
+&nbsp;	* Offers practical guidelines for selecting allocation/scheduling methods based on measurable metrics.
 
-&nbsp;	\* Designed for reproducibility, determinism, and scalability in research and real-world SoC evaluations.
+&nbsp;	* Designed for reproducibility, determinism, and scalability in research and real-world SoC evaluations.
 
-&nbsp;	\* Future-ready for extensions such as:
+&nbsp;	* Future-ready for extensions such as:
 
 &nbsp;		> Heterogeneous SoC support (different core types)
 
